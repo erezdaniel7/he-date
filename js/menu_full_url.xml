@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<menu>
+	<link id="calendar">
+		<title>לוח שנה</title> 
+		<url>http://he-date.info/index.html</url>
+	</link>
+	<link id="dateConvert">
+		<title>ממיר תאריכים</title> 
+		<url>http://he-date.info/dateconvert.html</url>
+	</link>
+	<link id="moladCalculate">
+		<title>מחשבון מולדות</title> 
+		<url>http://he-date.info/moladcalculate.html</url>
+	</link>
+	<link id="site">
+		<title>קוד תאריך עברי</title> 
+		<url>http://he-date.info/site.html</url>
+	</link>
+	<link id="contactMe">
+		<title>צור קשר</title> 
+		<url>http://he-date.info/contactme.html</url>
+	</link>
+</menu>

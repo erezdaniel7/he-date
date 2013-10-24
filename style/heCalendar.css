@@ -1,0 +1,132 @@
+﻿/* Smallcalendar*/
+
+.HeSmallcalendar {
+	direction:rtl;
+	width: 250px;
+	padding: 0 20px;
+	text-align: center;
+	color:#FFFFFF;
+	background:gray;
+	
+}
+
+.HeSmallcalendar caption{
+	color:black;
+}
+
+.HeSmallcalendar thead th {
+	border-bottom: 2px solid #F2F2F2;
+	border-top: 1px solid #F2F2F2;
+}
+
+.HeSmallcalendar tbody td {
+	padding: 5px 0;
+	border-bottom: 1px solid #F2F2F2;
+}
+
+.HeSmallcalendar tbody .today{
+	color:red;
+}
+
+.HeSmallcalendar .sabbath{
+	color:blue;
+}
+
+
+.HeSmallcalendar tfoot td {
+	border-top: 1px solid #F2F2F2;
+}
+
+.HeSmallcalendar .prev {
+	text-align: right;
+}
+
+.HeSmallcalendar .next {
+	text-align: left;
+}
+
+.HeSmallcalendar .next label , .HeSmallcalendar .prev label {
+	font-weight: bold;
+	cursor:pointer;
+}
+
+/*Bigclendar*/
+
+.HeBigcalendar {
+	direction:rtl;
+	width: 100%;
+	color:black;
+	background:white;
+	border: 1px black double;
+	
+}
+
+.HeBigcalendar td{
+	width:14%;	
+}
+
+
+.HeBigcalendar caption{
+	color:black;
+}
+
+.HeBigcalendar thead th {
+	height: 50px;
+}
+
+.HeBigcalendar thead .jDate{
+	text-align: right;
+}
+
+.HeBigcalendar thead .oDate{
+	text-align: left;
+}
+
+
+.HeBigcalendar tbody td {
+	padding: 0;
+	border: 1px black double;
+	text-align:right;
+}
+
+.HeBigcalendar tbody .today{
+	color:red;
+}
+
+.HeBigcalendar .sabbath{
+	color:blue;
+}
+
+
+.HeBigcalendar tfoot td {
+}
+
+.HeBigcalendar .prev {
+	text-align: right;
+}
+
+.HeBigcalendar .next {
+	text-align: left;
+}
+
+.HeBigcalendar .next label , .HeBigcalendar .prev label {
+	font-weight: bold;
+	cursor:pointer;
+}
+
+.HeBigcalendar .jDate{
+	font-size:40px;
+}
+
+.HeBigcalendar .oDate{
+	font-size:15px;
+	text-align: left;
+	left:0;
+}
+
+.HeBigcalendar .event{
+	display:block;
+	font-size:15px;
+	padding:10px;
+}
+

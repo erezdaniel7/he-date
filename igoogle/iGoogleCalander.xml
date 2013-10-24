@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <ModulePrefs title="לוח שנה עברי"
+      title_url="http://calendar.daniel.funet.co.il/"  height="230"
+      author="Daniel Levanon"
+      author_email="daniellevanon@gmail.com"
+      description="מציג לוח שנה עברי עם התאריך של היום"
+      screenshot="http://calendar.daniel.funet.co.il/igoogle/iGooglCalendar.JPG" thumbnail="http://calendar.daniel.funet.co.il/igoogle/iGooglCalendar.JPG"
+    />
+  <Content type="html">
+    <![CDATA[
+          <script type="text/javascript" language="javascript" src="http://calendar.daniel.funet.co.il/js/HeDate.js"></script>
+          <script type="text/javascript" language="javascript" src="http://calendar.daniel.funet.co.il/js/heCalendar.js"></script>
+          <script type="text/javascript" language="javascript" src="http://calendar.daniel.funet.co.il/js/jquery.js"></script> 
+          <link href="http://calendar.daniel.funet.co.il/igoogle/iGoogleCalendar.css" rel="stylesheet" type="text/css"/>        
+          <div id="calendar" dir="rtl">לוח שנה</div>
+          <div id="today" dir="rtl" onClick=window.open("http://calendar.daniel.funet.co.il")><label class="date"></label><br/><br/><label class="month"></label><br/><br/><label class="day"></label></div>
+          <script type="text/javascript" language="javascript">
+            var today = new HeDate(new Date()); 
+            initializHeSmallCalendar(new HeDate(today), "calendar");
+            $("#today").find(".date").html(HeDate.gimatria(today.getDate()));;
+            $("#today").find(".month").html(today.getMonthString());
+            var days = ['יום ראשון','יום שני','יום שלישי','יום רביעי','יום חמישי','יום שישי','שבת'];
+            $("#today").find(".day").html(days[today.getDay()-1]);
+          </script>
+
+    ]]>
+  </Content>
+</Module>

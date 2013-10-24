@@ -1,0 +1,6 @@
+body{font-family:arial,sans-serif}
+#topbar{font-size:13px; border-bottom:1px solid #c9d7f1; overflow: hidden; padding-bottom:5px;}
+#topbar .menu{float:right;}
+#topbar .menu a{margin-left:.73em; color:Black;}
+#topbar .menu span{margin-left:.73em; color:Black; font-weight:bold;}
+#topbar .today{float:left;}

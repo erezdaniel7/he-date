@@ -1,0 +1,89 @@
+﻿<html dir="rtl">
+
+<head>
+<title>לוח השנה העברי - בדיקת מחזוריות 19 שנים</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<script type="text/javascript" src="js/HeDate.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">var thisPageId="every19yeras";</script>
+<link href="style/style.css" rel="stylesheet" type="text/css"/> 
+<script type="text/javascript">
+
+    function intDiv(a, b) {
+        return (a  - a % b)/ b;
+    }
+
+
+    function showTable() {
+        var t = "<table border=1>";
+        t += "<tr><td>מחזור</td>";
+        for (var i = 1; i <= 19; i++)
+            t += "<td>#" + i + "</td>";
+        t += "</tr>";
+        var from = HeDate.regimatria(document.getElementById("from").value);
+        var to = HeDate.regimatria(document.getElementById("to").value);
+        from -= (from % 19) - 1;
+        to += 19 - to % 19;
+        for (var i = from; i <= to; i++) {
+            if (i % 19 == 1) {
+                t += "<tr>";
+                t += "<td>" + (intDiv(i, 19)+1) + "</td>";
+            }
+            var d = new HeDate(i, 1, 1);
+            var od = d.ConvertToGregorian();
+            t += "<td>" + HeDate.gimatria(i) + " - " + od.getDate() + "/" + (od.getMonth() + 1) + "/" + od.getFullYear() + "</td>";
+            if (i % 19 == 0) t += "</tr>";
+        }
+        t += "</table>";
+        document.getElementById("myTable").innerHTML = t;
+    }
+
+    function yearChange(o) {
+        var str = o.value;
+        var num = parseInt(str);
+        if (isNaN(num)) num = HeDate.regimatria(str);
+        if (num == 0) num = 1;
+        str = HeDate.gimatria(num);
+        o.value = str;
+    }
+
+
+
+    $(document).ready(function () {
+        var today = new HeDate(new Date());
+        $("#from").val(HeDate.gimatria(today.getYear()));
+        $("#to").val(HeDate.gimatria(100 + today.getYear()));
+        showTable();
+
+    });
+
+</script>
+
+</head>
+
+<body>
+    <div id="topbar">
+		<div class="menu"></div>
+		<div class="today"></div>
+	</div>
+<h1>בדיקת מחזוריות 19 שנים</h1>
+
+חישוב התאריך הלועזי של ראש השנה לפי מחזורים
+<br />
+<br />
+<br />
+שנת התחלה:<input type="text" id="from" value="5770" onchange="yearChange(this);"/>
+שנת סיום:<input type="text" id="to" value="5790" onchange="yearChange(this);"/>
+<br />
+<input type="button" onclick="showTable()" value="חשב מחדש" />
+
+<div id="myTable"></div>
+<br/>
+
+נבנה ע"י דניאל לבנון. להערות והארות נא לשלוח דוא"ל daniellevanon@gmail.com
+
+
+</body>
+<script type="text/javascript" src="js/script.js"></script>
+
+</html>
