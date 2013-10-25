@@ -8,7 +8,7 @@
 <script type="text/javascript">var thisPageId="moladCalculate";</script>
 <link href="style/style.css" rel="stylesheet" type="text/css"/> 
 <script type="text/javascript">
-
+var today = new HeDate(new Date());
 function Time(days,hours,parts){
     this.days=days;
     this.hours=hours;
@@ -123,11 +123,11 @@ function printLine(year) {
     return ans;
  }
 
-function showTable(){
-    var t="<table border=1>";
+function showTable(from,to){
+	console.log("showTable");
+	var t="<table border=1>";
     t += "<tr><td>שנה</td><td>זמן מולד<br/>(יום: שעות: חלקים)</td><td>דחיות</td><td>יום בשבוע ראש השנה</td><td>סוג שנה</td><td>מעוברת?</td><td>תאריך לועזי של ראש השנה</td></tr>";
-    var from = HeDate.regimatria(document.getElementById("from").value);
-    var to = HeDate.regimatria(document.getElementById("to").value);
+
     for (i=from; i<=to; i++){
         t += printLine(i)
     }
@@ -144,15 +144,47 @@ function yearChange(o) {
     o.value=str;
 }
 
+function changeHash(){
+	var from=0,to=0;
+	tmp=window.location.hash.substr(1).split(",");
+	if (tmp.length==2){
+		from = parseInt(tmp[0]);
+		to = parseInt(tmp[1]);
+	}
+	if (to==0 && from==0){
+		from=today.getYear();
+		to=from+19;
+	}
+	else if(from==0){
+		from=1;
+	}
+	else if(to<from){
+		to=from;
+	}
+	else 
+		showTable(from,to);
+	window.location.hash = from+","+to;
+	$("#from").val(HeDate.gimatria(from));
+	$("#to").val(HeDate.gimatria(to));
+}
+
 
 
 $(document).ready(function () {
-    var today = new HeDate(new Date());
-    $("#from").val(HeDate.gimatria(today.getYear()));
-    $("#to").val(HeDate.gimatria(19+today.getYear()));
-    showTable();
-
+    changeHash();	
+	$( "#yearSelect" ).submit(function( event ) {
+		event.preventDefault();
+		var from = HeDate.regimatria($("#from").val());
+		var to = HeDate.regimatria($("#to").val());
+		window.location.hash = from+","+to;
+	});
 });
+
+$(window).bind( 'hashchange', changeHash);
+
+
+
+
 
 </script>
 
@@ -186,10 +218,12 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 מחשב עבור כל שנה את זמן מולד הירח של ראש השנה, את הדחיות ואת סוג השנה.
 <br />
 <br />
-שנת התחלה:<input type="text" id="from" value="5770" onchange="yearChange(this);"/>
-שנת סיום:<input type="text" id="to" value="5790" onchange="yearChange(this);"/>
-<br />
-<input type="button" onclick="showTable()" value="חשב מחדש" />
+<form id="yearSelect">
+	שנת התחלה:<input type="text" id="from" onchange="yearChange(this);"/>
+	שנת סיום:<input type="text" id="to" onchange="yearChange(this);"/>
+	<br />
+	<input type="submit" value="חשב מחדש" />
+</form>
 
 <div id="myTable"></div>
 <br/>
