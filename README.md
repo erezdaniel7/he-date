@@ -7,7 +7,7 @@ HeDate site http://he-date.info/site.html (Hebrew)
 ## Quick Examples
 
  ```javascript
-var s=new HeDate().toString();
+var s=(new HeDate).toString();
 //now s is "יום שישי, ז' חשון ה'תשע"ה"
  ```
 ## demo
