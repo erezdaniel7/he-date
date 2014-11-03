@@ -10,7 +10,7 @@ HeDate site http://he-date.info/site.html (Hebrew)
 var s=(new HeDate()).toString();
 //now s is "יום שישי, ז' חשון ה'תשע"ה"
  ```
-## demo
+## Demo
 
 http://he-date.info/public/demo.html
  
@@ -22,7 +22,7 @@ http://he-date.info/public/demo.html
 ```javascript
 HeDate() empty constructor- set today date.
 HeDate(date) convert constructor- convert date from Date clsaa.
-HeDate(time) init constructor- time- day from א' תשרי א'
+HeDate(time) init constructor- time- days since א' תשרי א'
 HeDate(y,m,d) init constructor2- get year, month,days.
 HeDate(heDate) copy constructor- deep copy of the object.
 
@@ -35,19 +35,58 @@ var d5=new HeDate(d3); // כ' אדר ה'תשע"ג
 
 ```
 
+### Methods
+
+#### getYear();
+return the year (integer)
+
+#### getMonth()
+return the month (integer) (1-13)
+*6 is Adar-A and 7 is Adar (or Adar-B in leap year)
+
+#### getDate()
+return the Date (0-30)
+
+#### getDay()
+return the Date (0-7)
+
+#### getTime()
+Returns the number of days since  א' תשרי א'
+
+#### getMonthLength()
+Return the number of days in the month 
+
+#### getYearLength()
+Return the number of days in the year
+
+#### getMonthString()
+Return the string of month name.
+
+#### toString()
 
 
- ```javascript
-var hedate1=new HeDate(); //  set today date.
-var hedate2=new HeDate(dates); //  today.
-var hedate3=new HeDate(); //  today.
-var hedate4=new HeDate(); //  today.
-var hedate5=new HeDate(); //  copy co
+#### setDate(day)
+#### addMonths(monthNumber)
+#### setYear(year)
+#### setTime(year)
 
-//now s is "יום שישי, ז' חשון ה'תשע"ה"
- ```
+#### ConvertToGregorian()
+return Date object.
 
- 
+### Help function
+
+#### HeDate.gimatria(num)
+#### HeDate.regimatria(str)
+
+
+
+
+
+
+
+
+
+
 ## License
  
 Copyright (c) 2004-2014 (ה'תשס"ד -ה'תשע"ה) daniel levanon (daniellevanon@gmail.com)
