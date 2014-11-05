@@ -17,7 +17,32 @@ http://he-date.info/public/demo.html
 
 ## Documentation
 
-### Constructors
+* [`Constructors`](#Constructors)
+
+### Methods
+* [`getYear`](#getYear)
+* [`getMonth`](#getMonth)
+* [`getDate`](#getDate)
+* [`getDay`](#getDay)
+* [`getTime`](#getTime)
+* [`getMonthLength`](#getMonthLength)
+* [`getYearLength`](#getYearLength)
+* [`getMonthString`](#getMonthString)
+* [`toString`](#toString)
+
+* [`setDate`](#setDate)
+* [`addMonths`](#addMonths)
+* [`setYear`](#setYear)
+* [`setTime`](#setTime)
+
+* [`ConvertToGregorian`](#ConvertToGregorian)
+
+### Help function
+* [`HeDate.gimatria(num)`](#HeDate.gimatria(num))
+* [`HeDate.regimatria(str)`](#HeDate.regimatria(str))
+
+<a name="Constructors" />
+## Constructors
 
 ```javascript
 HeDate() empty constructor- set today date.
@@ -35,55 +60,68 @@ var d5=new HeDate(d3); // כ' אדר ה'תשע"ג
 
 ```
 
-### Methods
+## Methods
 
-#### getYear();
+<a name="Constructors" />
+### getYear();
 return the year (integer)
 
-#### getMonth()
+<a name="Constructors" />
+### getMonth()
 return the month (integer) (1-13)
 *6 is Adar-A and 7 is Adar (or Adar-B in leap year)
 
-#### getDate()
+<a name="Constructors" />
+### getDate()
 return the Date (0-30)
 
-#### getDay()
+<a name="Constructors" />
+### getDay()
 return the Date (0-7)
 
-#### getTime()
+<a name="Constructors" />
+### getTime()
 Returns the number of days since  א' תשרי א'
 
-#### getMonthLength()
+<a name="Constructors" />
+### getMonthLength()
 Return the number of days in the month 
 
-#### getYearLength()
+<a name="Constructors" />
+### getYearLength()
 Return the number of days in the year
 
-#### getMonthString()
+<a name="Constructors" />
+### getMonthString()
 Return the string of month name.
 
-#### toString()
+<a name="Constructors" />
+### toString()
 
 
-#### setDate(day)
-#### addMonths(monthNumber)
-#### setYear(year)
-#### setTime(year)
+<a name="Constructors" />
+### setDate(day)
 
-#### ConvertToGregorian()
+<a name="Constructors" />
+### addMonths(monthNumber)
+
+<a name="Constructors" />
+### setYear(year)
+
+<a name="Constructors" />
+### setTime(year)
+
+<a name="Constructors" />
+### ConvertToGregorian()
 return Date object.
 
-### Help function
+## Help function
 
-#### HeDate.gimatria(num)
-#### HeDate.regimatria(str)
+<a name="Constructors" />
+### HeDate.gimatria(num)
 
-
-
-
-
-
-
+<a name="Constructors" />
+### HeDate.regimatria(str)
 
 
 
