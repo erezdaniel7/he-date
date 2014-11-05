@@ -31,6 +31,7 @@ http://he-date.info/public/demo.html
 * [`toString()`](#toString)
 * [`setDate()`](#setDate)
 * [`addMonths()`](#addMonths)
+* [`setMonth()`](#setMonths)
 * [`setYear()`](#setYear)
 * [`setTime()`](#setTime)
 * [`ConvertToGregorian()`](#ConvertToGregorian)
@@ -151,28 +152,70 @@ var x=d.toString();
 
 <a name="setDate" />
 ### setDate(day)
+```javascript
+var d=new HeDate(2108971);
+d.setDate(18); //"יום שלישי, י"ח חשון ה'תשע"ה"
+d.setDate(d.getDate()+100); //"יום חמישי, ל' שבט ה'תשע"ה"
+ ```
 
 <a name="addMonths" />
 ### addMonths(monthNumber)
+```javascript
+var d=new HeDate(2108971);
+d.addMonths(1); //"יום חמישי, י"ב כסלו ה'תשע"ה"
+d.addMonths(5); //"יום שישי, י"ב אייר ה'תשע"ה" 
+ ```
+
+<a name="setMonth" />
+### setMonth(month)
+```javascript
+var d=new HeDate(2108971);
+d.setMonth(1); //"יום שני, י"ב תשרי ה'תשע"ה"
+d.setMonth(5); //"יום ראשון, י"ב שבט ה'תשע"ה"
+ ```
 
 <a name="setYear" />
 ### setYear(year)
+```javascript
+var d=new HeDate(2108971);
+d.setYear(5770); //"יום שישי, י"ב חשון ה'תש"ע"
+d.setYear(d.getYear()+100); //"יום רביעי, י"ב חשון ה'תת"ע"
+ ```
 
 <a name="setTime" />
 ### setTime(year)
+```javascript
+var d=new HeDate();
+d.setTime(2108960); //"שבת, א' חשון ה'תשע"ה"
+ ```
 
 <a name="ConvertToGregorian" />
 ### ConvertToGregorian()
 return Date object.
+```javascript
+var d=new HeDate(2109000);
+d.ConvertToGregorian(); //"Thu Dec 04 2014 00:00:00"
+ ```
 
 ## function
 
 <a name="HeDate.gimatria(num)" />
 ### HeDate.gimatria(num)
 
+```javascript
+HeDate.gimatria(5700); // "ה'ת"ש"
+ ```
+
 <a name="HeDate.regimatria(str)" />
 ### HeDate.regimatria(str)
-
+```javascript
+var s="ה'ת\"ש"
+HeDate.regimatria(s); // 5700
+var s="אבג"
+HeDate.regimatria(s); // 1005
+var s="התש"
+HeDate.regimatria(s); // 5700
+ ```
 
 
 ## License
