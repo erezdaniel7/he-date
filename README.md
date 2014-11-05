@@ -20,24 +20,22 @@ http://he-date.info/public/demo.html
 * [`Constructors`](#Constructors)
 
 ### Methods
-* [`getYear`](#getYear)
-* [`getMonth`](#getMonth)
-* [`getDate`](#getDate)
-* [`getDay`](#getDay)
-* [`getTime`](#getTime)
-* [`getMonthLength`](#getMonthLength)
-* [`getYearLength`](#getYearLength)
-* [`getMonthString`](#getMonthString)
-* [`toString`](#toString)
+* [`getYear()`](#getYear)
+* [`getMonth()`](#getMonth)
+* [`getDate()`](#getDate)
+* [`getDay()`](#getDay)
+* [`getTime()`](#getTime)
+* [`getMonthLength()`](#getMonthLength)
+* [`getYearLength()`](#getYearLength)
+* [`getMonthString()`](#getMonthString)
+* [`toString()`](#toString)
+* [`setDate()`](#setDate)
+* [`addMonths()`](#addMonths)
+* [`setYear()`](#setYear)
+* [`setTime()`](#setTime)
+* [`ConvertToGregorian()`](#ConvertToGregorian)
 
-* [`setDate`](#setDate)
-* [`addMonths`](#addMonths)
-* [`setYear`](#setYear)
-* [`setTime`](#setTime)
-
-* [`ConvertToGregorian`](#ConvertToGregorian)
-
-### Help function
+### function
 * [`HeDate.gimatria(num)`](#HeDate.gimatria(num))
 * [`HeDate.regimatria(str)`](#HeDate.regimatria(str))
 
@@ -62,65 +60,117 @@ var d5=new HeDate(d3); // כ' אדר ה'תשע"ג
 
 ## Methods
 
-<a name="Constructors" />
+<a name="getYear" />
 ### getYear();
 return the year (integer)
+```javascript
+var d=new HeDate(2108971);
+var x=d.getYear();
+//now x is 5775
+ ```
 
-<a name="Constructors" />
+<a name="getMonth" />
 ### getMonth()
-return the month (integer) (1-13)
-*6 is Adar-A and 7 is Adar (or Adar-B in leap year)
+return the month (integer) (1-13).
 
-<a name="Constructors" />
+* 6 is Adar-A and 7 is Adar (or Adar-B in leap year).
+
+```javascript
+var d=new HeDate(2108971);
+var x=d.getYear();
+//now x is 5775
+ ```
+
+<a name="getDate" />
 ### getDate()
-return the Date (0-30)
+return the Date (1-30)
 
-<a name="Constructors" />
+```javascript
+var d=new HeDate(2108971);
+var x=d.getDate();
+//now x is 12
+ ```
+
+<a name="getDay" />
 ### getDay()
-return the Date (0-7)
+return the day of the week (1-7)
 
-<a name="Constructors" />
+```javascript
+var d=new HeDate(2108971);
+var x=d.getDay();
+//now x is 4
+ ```
+
+<a name="getTime" />
 ### getTime()
 Returns the number of days since  א' תשרי א'
+```javascript
+var d=new HeDate(2108971);
+var x=d.getTime();
+//now x is 2108971
+ ```
 
-<a name="Constructors" />
+<a name="getMonthLength" />
 ### getMonthLength()
 Return the number of days in the month 
 
-<a name="Constructors" />
+```javascript
+var d=new HeDate(2108971);
+var x=d.getMonthLength();
+//now x is 29
+ ```
+
+<a name="getYearLength" />
 ### getYearLength()
 Return the number of days in the year
 
-<a name="Constructors" />
+```javascript
+var d=new HeDate(2108971);
+var x=d.getYearLength();
+//now x is 354
+ ```
+
+<a name="getMonthString" />
 ### getMonthString()
 Return the string of month name.
 
-<a name="Constructors" />
+```javascript
+var d=new HeDate(2108971);
+var x=d.getMonthString();
+//now x is "חשון"
+ ```
+
+<a name="toString" />
 ### toString()
 
+```javascript
+var d=new HeDate(2108971);
+var x=d.toString();
+//now x is "יום רביעי, י"ב חשון ה'תשע"ה"
+ ```
 
-<a name="Constructors" />
+<a name="setDate" />
 ### setDate(day)
 
-<a name="Constructors" />
+<a name="addMonths" />
 ### addMonths(monthNumber)
 
-<a name="Constructors" />
+<a name="setYear" />
 ### setYear(year)
 
-<a name="Constructors" />
+<a name="setTime" />
 ### setTime(year)
 
-<a name="Constructors" />
+<a name="ConvertToGregorian" />
 ### ConvertToGregorian()
 return Date object.
 
-## Help function
+## function
 
-<a name="Constructors" />
+<a name="HeDate.gimatria(num)" />
 ### HeDate.gimatria(num)
 
-<a name="Constructors" />
+<a name="HeDate.regimatria(str)" />
 ### HeDate.regimatria(str)
 
 
