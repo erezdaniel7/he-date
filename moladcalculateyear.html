@@ -5,7 +5,6 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <script type="text/javascript" src="js/HeDate.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript">var thisPageId="moladCalculate";</script>
 <link href="style/style.css" rel="stylesheet" type="text/css"/> 
 <script type="text/javascript">
 var today = new HeDate(new Date());
@@ -20,14 +19,20 @@ function intDiv(a, b) {
 }
 
 
-function getTimeOfMoladRoshHshann(yaer) {
-    var numOfMonth=(yaer-1)*12+intDiv(yaer-1,19)*7; //(y-1)*12+((y-1) div 19)*7
-    if ((yaer-1)%19>=17) numOfMonth+=6;
-    else if((yaer-1)%19>=14) numOfMonth+=5;
-    else if((yaer-1)%19>=11) numOfMonth+=4;
-    else if((yaer-1)%19>=8) numOfMonth+=3;
-    else if((yaer-1)%19>=6) numOfMonth+=2;
-    else if((yaer-1)%19>=3) numOfMonth++;
+function getTimeOfMoladRoshHshann(year,month) {
+    if (isNaN(month)) month = 1;
+    var numOfMonth=(year-1)*12+intDiv(year-1,19)*7; //(y-1)*12+((y-1) div 19)*7
+    if ((year-1)%19>=17) numOfMonth+=6;
+    else if((year-1)%19>=14) numOfMonth+=5;
+    else if((year-1)%19>=11) numOfMonth+=4;
+    else if((year-1)%19>=8) numOfMonth+=3;
+    else if((year-1)%19>=6) numOfMonth+=2;
+    else if((year-1)%19>=3) numOfMonth++;
+	
+	numOfMonth+=month-1;
+	
+	if(!IsLeapYear(year) && month>6)
+		numOfMonth--;
     
     myTime=new Time(numOfMonth*29,numOfMonth*12,numOfMonth*793);
     //add the first molad.
@@ -58,14 +63,14 @@ function mod7(day){
 }
 
 var Delays;
-function getDayOfRoshHshan(yaer) {
+function getDayOfRoshHshan(year) {
     Delays="";
-    myTime=getTimeOfMoladRoshHshann(yaer);
+    myTime=getTimeOfMoladRoshHshann(year);
     if (myTime.hours >= 18) //מולד זקן בל תדרוש
         { myTime.days++; Delays = "מולד זקן בל תדרוש"; }
-    else if (mod7(myTime.days) == 3 && ((myTime.hours == 9 && myTime.parts >= 204) | myTime.hours > 9) && !IsLeapYear(yaer)) // ג"ט ר"ד בשנה פשוטה גרוש
+    else if (mod7(myTime.days) == 3 && ((myTime.hours == 9 && myTime.parts >= 204) | myTime.hours > 9) && !IsLeapYear(year)) // ג"ט ר"ד בשנה פשוטה גרוש
         { myTime.days++; Delays = "ג\"ט ר\"ד בשנה פשוטה גרוש"; }
-    else if (mod7(myTime.days) == 2 && ((myTime.hours == 15 && myTime.parts >= 589) | myTime.hours > 15) && IsLeapYear(yaer - 1)) // בט\"ו תקפ\"ט אחר עיבור עקור מלשרוש
+    else if (mod7(myTime.days) == 2 && ((myTime.hours == 15 && myTime.parts >= 589) | myTime.hours > 15) && IsLeapYear(year - 1)) // בט\"ו תקפ\"ט אחר עיבור עקור מלשרוש
         { myTime.days++; Delays = "בט\"ו תקפ\"ט אחר עיבור עקור מלשרוש"; }
 
         if (mod7(myTime.days) == 1 | mod7(myTime.days) == 4 | mod7(myTime.days) == 6) //לא אד"ו ראש
@@ -81,57 +86,65 @@ function getDayOfRoshHshan(yaer) {
 //כסדרה=0
 //חסרה=-1
 //מלאה=1
-function getyaertype(yaer){
-    day=getDayOfRoshHshan(yaer);
-    if (IsLeapYear(yaer)) day+=384;
+function getyeartype(year){
+    day=getDayOfRoshHshan(year);
+    if (IsLeapYear(year)) day+=384;
     else day+=354;
-    return getDayOfRoshHshan(yaer+1)-day;
+    return getDayOfRoshHshan(year+1)-day;
 }
 
-function getSeptemberDatOfRoshHashanah(yaer){
+function getSeptemberDatOfRoshHashanah(year){
     //a-Number of datys from september 1739-september in the calculate year.
-    var a=intDiv(yaer-3761,4)-intDiv(yaer-3761,100)+intDiv(yaer-3761,400);
+    var a=intDiv(year-3761,4)-intDiv(year-3761,100)+intDiv(year-3761,400);
     a-=intDiv(1739,4)-intDiv(1739,100)+intDiv(1739,400);
-    a+=(yaer-3761-1739)*365;
+    a+=(year-3761-1739)*365;
     //b-Number of days from Rosh Hashanah 5500-Rosh Hashanah in the calculate year.
-    var b=getDayOfRoshHshan(yaer)-getDayOfRoshHshan(5500);
+    var b=getDayOfRoshHshan(year)-getDayOfRoshHshan(5500);
     return b-a+33;
 }
 
-function getGregorianDateDatOfRoshHashanah(yaer){
+function getGregorianDateDatOfRoshHashanah(year){
     var myDate=new Date();
-    myDate.setFullYear(yaer-3761,8,getSeptemberDatOfRoshHashanah(yaer));
+    myDate.setFullYear(year-3761,8,getSeptemberDatOfRoshHashanah(year));
     return myDate;
 }
 
-function printLine(year) {
-    var ans = "";
-    time = getTimeOfMoladRoshHshann(year);
-    ans += "<tr><td><a href='moladcalculateyear.html#"+year+"'>" + HeDate.gimatria(year) +"</a>";
+function showTable(year){
+	var t="<h1>שנת "+HeDate.gimatria(year)+"</h1>";
+	
+
+	time = getTimeOfMoladRoshHshann(year);
     var days = new Array("", "ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת");
-    ans += "</td><td>" + days[mod7(time.days)] + " : " + time.hours + " : " + time.parts;
-    var DayOfRoshHshan = getDayOfRoshHshan(year);
-    ans += "</td><td>" + Delays;
-    ans += "</td><td>" + days[mod7(DayOfRoshHshan)];
-    var type = new Array("חסרה", "כסדרה", "מלאה");
-    ans += "</td><td>" + type[1 + getyaertype(year)];
-    var leap = new Array("פשוטה", "מעוברת");
-    ans += "</td><td>" + leap[IsLeapYear(year) * 1] + " ("+(year%19==0?19:year%19)+")";
-    var gDate = getGregorianDateDatOfRoshHashanah(year);
-    ans += "</td><td>" + gDate.getDate() + "/" + (gDate.getMonth() + 1) + "/" + gDate.getFullYear();
-    ans += "</td></tr>";
-    return ans;
- }
 
-function showTable(from,to){
-	console.log("showTable");
-	var t="<table border=1>";
-    t += "<tr><td>שנה</td><td>זמן מולד<br/>(יום: שעות: חלקים)</td><td>דחיות</td><td>יום בשבוע ראש השנה</td><td>סוג שנה</td><td>מעוברת?</td><td>תאריך לועזי של ראש השנה</td></tr>";
-
-    for (i=from; i<=to; i++){
-        t += printLine(i)
-    }
-    t+="</table>";
+	var leap = new Array("פשוטה", "מעוברת");
+	var type = new Array("חסרה", "כסדרה", "מלאה");
+	var DayOfRoshHshan = getDayOfRoshHshan(year);
+	t+="<ul>";
+	t+="<li>"+type[1 + getyeartype(year)]+", " + leap[IsLeapYear(year) * 1] + "</li>";
+	t+="<li>שנה "+(year%19==0?19:year%19)+" במחזור</li>";
+	if (Delays!=""){
+		t+="<li>"+Delays+"</li>";
+	}
+	t+="<li> אורך השנה: "+(354+ getyeartype(year) + 30*IsLeapYear(year)) + " ימים</li>";
+	t+="</ul>";
+	
+	
+	t+= "<table border=1>";
+	t+= "<tr><td>חודש</td><td>זמן מולד<br/>(יום: שעות: חלקים)</td><td>יום בשבוע א בחודש</td><td>תאריך לועזי א בחודש</td></tr>";
+	for (var i=1;i<=13;i++){
+		if (i==6 && !IsLeapYear(year)) continue;
+		var d=new HeDate(year,i,1);
+		t+="<tr>";
+		t+="<td>"+d.getMonthString()+"</td>";
+		time = getTimeOfMoladRoshHshann(year,i);
+		t+="<td>"+days[mod7(time.days)] + " : " + time.hours + " : " + time.parts+"</td>";
+		t+="<td>"+days[d.getDay()]+"</td>";
+		var gDate=d.ConvertToGregorian();
+		t+= "<td>" + gDate.getDate() + "/" + (gDate.getMonth() + 1) + "/" + gDate.getFullYear()+"</td>";
+		
+		t+="</tr>";
+	}
+	t+= "</table>"
     document.getElementById("myTable").innerHTML=t;
 }
 
@@ -145,27 +158,16 @@ function yearChange(o) {
 }
 
 function changeHash(){
-	var from=0,to=0;
-	tmp=window.location.hash.substr(1).split(",");
-	if (tmp.length==2){
-		from = parseInt(tmp[0]);
-		to = parseInt(tmp[1]);
-	}
-	if (to==0 && from==0){
-		from=today.getYear();
-		to=from+19;
-	}
-	else if(from==0){
-		from=1;
-	}
-	else if(to<from){
-		to=from;
+	var year=0;
+	tmp=window.location.hash.substr(1);
+	year=parseInt(tmp);
+	if(year<=0 | isNaN(year)){
+		year=today.getYear();
 	}
 	else 
-		showTable(from,to);
-	window.location.hash = from+","+to;
-	$("#from").val(HeDate.gimatria(from));
-	$("#to").val(HeDate.gimatria(to));
+		showTable(year);
+	window.location.hash = year;
+	$("#year").val(HeDate.gimatria(year));
 }
 
 
@@ -174,9 +176,8 @@ $(document).ready(function () {
     changeHash();	
 	$( "#yearSelect" ).submit(function( event ) {
 		event.preventDefault();
-		var from = HeDate.regimatria($("#from").val());
-		var to = HeDate.regimatria($("#to").val());
-		window.location.hash = from+","+to;
+		var year = HeDate.regimatria($("#year").val());
+		window.location.hash = year;
 	});
 });
 
@@ -215,12 +216,11 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
 
 
-מחשב עבור כל שנה את זמן מולד הירח של ראש השנה, את הדחיות ואת סוג השנה.
+מחשב עבור כל שנה את זמן מולד הירח של כל חודש, את הדחיות ואת סוג השנה.
 <br />
 <br />
 <form id="yearSelect">
-	שנת התחלה:<input type="text" id="from" onchange="yearChange(this);"/>
-	שנת סיום:<input type="text" id="to" onchange="yearChange(this);"/>
+	שנה<input type="text" id="year" onchange="yearChange(this);"/>
 	<br />
 	<input type="submit" value="חשב מחדש" />
 </form>
