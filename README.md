@@ -78,8 +78,8 @@ return the month (integer) (1-13).
 
 ```javascript
 var d=new HeDate(2108971);
-var x=d.getYear();
-//now x is 5775
+var x=d.getMonth();
+//now x is 2
  ```
 
 <a name="getDate" />
